@@ -4,7 +4,7 @@ NAME = so_long
 BONUS_NAME = checker
 
 SRC= ft_putchar_fd.c ft_putstr_fd.c ft_strlen.c ft_strncmp.c get_next_line.c get_next_line_utils.c\
-		 helper.c main.c parcing_2.c parcing.c check_walls.c
+		 helper.c main.c parcing_2.c parcing.c check_walls.c flod_fill.c
 
 OBJ = $(SRC:.c=.o)
 #BONUS_OBJ = $(BONUS_SRC:.c=.o)
