@@ -40,6 +40,8 @@ void	ft_error(char *msg);
 int		open_file(const char *file_name);
 int     read_file(int fd);
 map     *fill_map(int fd, const char *file_name);
-void	free_split(char **split);
+void	  free_split(char **split);
+void	  check_walls_2(map *data);
+void	  check_walls(map *data);
 
 #endif

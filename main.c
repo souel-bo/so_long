@@ -12,57 +12,61 @@
 
 #include "so_long.h"
 
-int	check_map(map *data)
+void check_count(counts *elements)
 {
-	int	i, k;
-
-	i = 0;
-	while (data->lines[0][i] != '\n')
-	{
-		if (data->lines[0][i] != '1')
-		{
-			free_split(data->lines);
-			free(data);
-			ft_error("invalid map\n");
-		}
-		i++;
-	}
-	data->width = i;
-	i = 1;
-	while (data->lines[i])
-	{
-		if (data->lines[i][0] != '1')
-		{
-			free_split(data->lines);
-			free(data);
-			ft_error("invalid map\n");
-		}
-		i++;
-	}
-	i = 0;
-	while (data->lines[data->height - 1][i] != '\0' && data->lines[data->height -1][i] != '\n')
-	{
-		if (data->lines[data->height - 1][i] != '1')
-		{
-			free_split(data->lines);
-			free(data);
-			ft_error("invalid map\n");
-		}
-		i++;
-	}
-	i = 1;
-	while (data->lines[i])
-	{
-		if (data->lines[i][data->width -1] != '1')
-		{
-			free_split(data->lines);
-			free(data);
-			ft_error("invalid map\n");
-		}
-		i++;
-	}
-	return (1);
+    if (elements->player != 1)
+        ft_error("map not valid: there must be exactly one player (P)\n");
+    if (elements->exit != 1)
+        ft_error("map not valid: there must be exactly one exit (E)\n");
+    if (elements->collectives < 1)
+        ft_error("map not valid: there must be at least one collectible (C)\n");
 }
+
+counts *check_arguments(map *data)
+{
+    int i, j;
+    counts *elements;
+
+    elements = malloc(sizeof(counts));
+    if (!elements)
+        ft_error("Memory allocation failed\n");
+    elements->player = 0;
+    elements->exit = 0;
+    elements->collectives = 0;
+    i = 1;
+    while (data->lines[i])
+    {
+        j = 1;
+        while (data->lines[i][j] != '\n' && data->lines[i][j] != '\0')
+        {
+            char c = data->lines[i][j];
+            if (!(c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P'))
+                ft_error("map not valid: invalid character in map\n");
+            if (c == 'P')
+                elements->player += 1;
+            else if (c == 'C')
+                elements->collectives += 1;
+            else if (c == 'E')
+                elements->exit += 1;
+            j++;
+        }
+        i++;
+    }
+    return elements;
+}
+
+int check_map(map *data)
+{
+    counts *elements;
+
+    check_walls(data);
+    check_walls_2(data);
+    elements = check_arguments(data);
+    check_count(elements);
+    free(elements);
+    return (1);
+}
+
 
 int	main(int argc, char **argv)
 {
