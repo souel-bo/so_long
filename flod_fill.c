@@ -6,24 +6,24 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:43:38 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/21 20:51:20 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/22 08:08:29 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    find_player(char **map, int *x, int *y)
+void    find_player(map *data, int *x, int *y)
 {
     int i;
     int j;
 
     i = 0;
-    while (map[i])
+    while (data->lines[i])
     {
         j = 0;
-        while (map[i][j] != '\0')
+        while (data->lines[i][j] != '\0')
         {
-            if (map[i][j] == 'P')
+            if (data->lines[i][j] == 'P')
             {
                 *x = j;
                 *y = i;
@@ -34,22 +34,22 @@ void    find_player(char **map, int *x, int *y)
         i++;
     }
 }
-void flood_fill(char **arr, int x, int y, map *data)
+void flood_fill(map *data, int x, int y)
 {
     if (x < 0 || y < 0 || y >= data->height - 1 || x >=  data->width - 1)
         return;
-    if (arr[y][x] == '1')
+    if (data->lines[y][x] == '1')
         return;
-    if (arr[y][x] == 'C')
-        arr[y][x] = 'V';
-    else if (arr[y][x] == 'E')
-        arr[y][x] = 'B';
-    else if (arr[y][x] == 'x')
+    if (data->lines[y][x] == 'C')
+        data->lines[y][x] = 'V';
+    else if (data->lines[y][x] == 'E')
+        data->lines[y][x] = 'B';
+    else if (data->lines[y][x] == 'x')
         return;
     else
-        arr[y][x] = 'x';
-    flood_fill(arr, x + 1, y, data);
-    flood_fill(arr, x - 1, y, data);
-    flood_fill(arr, x, y + 1, data);
-    flood_fill(arr, x, y - 1, data);
+        data->lines[y][x] = 'x';
+    flood_fill(data, x + 1, y);
+    flood_fill(data, x - 1, y);
+    flood_fill(data, x, y + 1);
+    flood_fill(data, x, y - 1);
 }

@@ -10,8 +10,7 @@ void  check_walls(map *data)
 		if (data->lines[0][i] != '1')
 		{
 			free_split(data->lines);
-			free(data);
-			ft_error("invalid map\n");
+			ft_error("invalid map\n", data);
 		}
 		i++;
 	}
@@ -22,8 +21,7 @@ void  check_walls(map *data)
 		if (data->lines[i][0] != '1')
 		{
 			free_split(data->lines);
-			free(data);
-			ft_error("invalid map\n");
+			ft_error("invalid map\n", data);
 		}
 		i++;
 	}
@@ -38,8 +36,7 @@ void	check_walls_2(map *data)
 		if (data->lines[data->height - 1][i] != '1')
 		{
 			free_split(data->lines);
-			free(data);
-			ft_error("invalid map\n");
+			ft_error("invalid map\n", data);
 		}
 		i++;
 	}
@@ -49,8 +46,7 @@ void	check_walls_2(map *data)
 		if (data->lines[i][data->width -1] != '1')
 		{
 			free_split(data->lines);
-			free(data);
-			ft_error("invalid map\n");
+			ft_error("invalid map\n", data);
 		}
 		i++;
 	}

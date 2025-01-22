@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:14 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/20 22:43:17 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:02:32 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int check_file_name(const char *file_name)
 	return (0);
 }
 
-void	ft_error(char *msg)
+void	ft_error(char *msg, map *data)
 {
+	free(data);
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(msg, 2);
 	exit(EXIT_FAILURE);
@@ -47,7 +48,11 @@ int	read_file(int fd)
 
 	first_line = get_next_line(fd);
 	if (!first_line)
-		ft_error("empty file");
+	{
+		free(first_line);
+		ft_putstr_fd("empty file\n", 2);
+		exit(1);
+	}
 	while (first_line != NULL)
 	{
 		second_line = get_next_line(fd);
@@ -61,7 +66,8 @@ int	read_file(int fd)
 			free(first_line);
 			get_next_line(-1);
 			free(second_line);
-			ft_error("invalid map\n");
+			ft_putstr_fd("map should be rectangle\n", 2);
+			exit(1);
 		}
 		free(first_line);
 		free(second_line);

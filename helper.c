@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:37:44 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/21 20:20:09 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:37:49 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,26 @@ void	free_split(char **split)
 	}
 	free(split);
 }
-void check_count(counts *elements)
+void check_count(counts *elements, map *data)
 {
     if (elements->player != 1)
-        ft_error("map not valid: there must be exactly one player (P)\n");
+    {
+        free(elements);
+        free_split(data->lines);
+        ft_error("map not valid: there must be exactly one player (P)\n", data);
+    }
     if (elements->exit != 1)
-        ft_error("map not valid: there must be exactly one exit (E)\n");
+    {
+        free(elements);
+        free_split(data->lines);
+        ft_error("map not valid: there must be exactly one exit (E)\n", data);
+    }
     if (elements->collectives < 1)
-        ft_error("map not valid: there must be at least one collectible (C)\n");
+    {
+        free(elements);
+        free_split(data->lines);
+        ft_error("map not valid: there must be at least one collectible (C)\n", data);
+    }
 }
 
 counts *check_arguments(map *data)
@@ -41,7 +53,7 @@ counts *check_arguments(map *data)
 
     elements = malloc(sizeof(counts));
     if (!elements)
-        ft_error("Memory allocation failed\n");
+        ft_error("Memory allocation failed\n", data);
     elements->player = 0;
     elements->exit = 0;
     elements->collectives = 0;
@@ -53,7 +65,10 @@ counts *check_arguments(map *data)
         {
             char c = data->lines[i][j];
             if (!(c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P'))
-                ft_error("map not valid: invalid character in map\n");
+            {
+                free(elements);
+                ft_error("map not valid: invalid character in map\n", data);
+            }
             if (c == 'P')
                 elements->player += 1;
             else if (c == 'C')
@@ -73,9 +88,10 @@ int check_map(map *data, int x, int y)
     check_walls(data);
     check_walls_2(data);
     elements = check_arguments(data);
-    check_count(elements);
-	find_player(data->lines, &x, &y);
-	flood_fill(data->lines, x, y, data);
-    //free(elements);
+    check_count(elements, data);
+	find_player(data, &x, &y);
+	flood_fill(data, x, y);
+    check_exit_collec(data, elements);
+    free(elements);
     return (1);
 }
