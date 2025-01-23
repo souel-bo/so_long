@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:45:32 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/22 09:33:02 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:07:37 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <stdlib.h>
 # include "libft.h"
 # include "get_next_line.h"
+#include "minilibx-linux/mlx.h"
+
+#define ESC_KEY 65307
 
 typedef struct file
 {
