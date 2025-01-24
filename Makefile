@@ -1,7 +1,8 @@
 CC = cc #-fsanitize=address -g3
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 NAME = so_long
 BONUS_NAME = checker
+MLX = -Iminilibx-linux -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
 SRC= ft_putchar_fd.c ft_putstr_fd.c ft_strlen.c ft_strncmp.c get_next_line.c get_next_line_utils.c\
 		 helper.c main.c parcing_2.c parcing.c check_walls.c flod_fill.c
@@ -16,8 +17,8 @@ all: $(NAME)
 #$(BONUS_NAME): $(BONUS_OBJ) push_swap.h
 #@$(CC) $(CFLAGS) $(BONUS_OBJ) -o $(BONUS_NAME)
 
-$(NAME): $(OBJ) so_long.h
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ)  so_long.h
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

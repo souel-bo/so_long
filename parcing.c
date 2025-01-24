@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:14 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/22 09:02:32 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/24 02:33:08 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int check_file_name(const char *file_name)
 {
 	size_t	lenght = ft_strlen(file_name);
-	if (lenght <= 4)
+	if (lenght < 4)
 		return (0);
 	if (ft_strncmp(file_name + lenght - 4, ".ber", 4) == 0)
 		return (1);

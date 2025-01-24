@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:45:32 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/23 21:07:37 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:29:30 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ typedef struct file
 	char	**lines;
 	char	*s;
 }	map;
+
+typedef struct oo
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	image;
+
+typedef struct ss
+{
+	void	*connection;
+	void	*window;
+}	game;
 
 typedef struct counts
 {
