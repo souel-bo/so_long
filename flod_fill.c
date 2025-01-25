@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:43:38 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/22 08:08:29 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:42:55 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void flood_fill(map *data, int x, int y)
     if (x < 0 || y < 0 || y >= data->height - 1 || x >=  data->width - 1)
         return;
     if (data->lines[y][x] == '1')
-        return;
-    if (data->lines[y][x] == 'C')
+        return ;
+    else if (data->lines[y][x] == 'C')
         data->lines[y][x] = 'V';
     else if (data->lines[y][x] == 'E')
         data->lines[y][x] = 'B';

@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/25 04:49:36 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:58:12 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,25 @@ int exit_button(void *par)
 	return (0);
 }
 
+void ft_draw_walls(image player_image, game *window, map *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->lines[i])
+	{
+		j = 0;
+		while (data->lines[i][j] != '\n' && data->lines[i][j] != '\0')
+		{
+			if (data->lines[i][j] == '1')
+				mlx_put_image_to_window(window->connection, window->window, player_image.wall, j * 32, i * 32);
+			j++;
+		}
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	int	        fd;
@@ -61,6 +80,7 @@ int	main(int argc, char **argv)
 	game		window;
 	image		player_image;
 	char *file_path = "character.xpm";
+	char *wall_path = "wall.xpm";
 
 	fd = 0;
     player.x = 0;
@@ -85,10 +105,10 @@ int	main(int argc, char **argv)
 			int image_width = /*data->width */ 64;
 			int image_height = /*data->height */ 64;
 			window.connection = mlx_init();
-			window.window = mlx_new_window(window.connection, data->width * 64, data->height * 64, "so_long");
+			window.window = mlx_new_window(window.connection, data->width * 32, data->height * 32, "so_long");
 			mlx_key_hook(window.window, check_key, &window);
-			player_image.img = mlx_xpm_file_to_image(window.connection, file_path, &image_width, &image_height);
-			mlx_put_image_to_window(window.connection, window.window, player_image.img, 32, 32);
+			player_image.wall = mlx_xpm_file_to_image(window.connection, wall_path, &image_width, &image_height);
+			ft_draw_walls(player_image, &window, data);
 			mlx_hook(window.window, 17, 0, exit_button, NULL);
 			mlx_loop(window.connection);
 			// free_split(data->lines);
