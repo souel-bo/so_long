@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void  check_walls(map *data)
+void  check_walls(t_game *data)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void  check_walls(map *data)
 	}
 }
 
-void	check_walls_2(map *data)
+void	check_walls_2(t_game *data)
 {
   int i;
 	i = 0;

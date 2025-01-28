@@ -6,13 +6,13 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:43:38 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/25 17:42:55 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:49:57 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    find_player(map *data, int *x, int *y)
+void    find_player(t_game *data, int *x, int *y)
 {
     int i;
     int j;
@@ -34,9 +34,12 @@ void    find_player(map *data, int *x, int *y)
         i++;
     }
 }
-void flood_fill(map *data, int x, int y)
+void flood_fill(t_game *data, int x, int y)
 {
     if (x < 0 || y < 0 || y >= data->height - 1 || x >=  data->width - 1)
+        return;
+    if (data->lines[y][x] == '1' || data->lines[y][x] == 'x' || 
+        data->lines[y][x] == 'V' || data->lines[y][x] == 'B' || data->lines[y][x] == '3')
         return;
     if (data->lines[y][x] == '1')
         return ;
@@ -44,6 +47,8 @@ void flood_fill(map *data, int x, int y)
         data->lines[y][x] = 'V';
     else if (data->lines[y][x] == 'E')
         data->lines[y][x] = 'B';
+    else if (data->lines[y][x] == 'P')
+        data->lines[y][x] = 'P';
     else if (data->lines[y][x] == 'x')
         return;
     else

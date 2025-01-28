@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:37:44 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/22 09:37:49 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/27 23:03:29 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_split(char **split)
 	}
 	free(split);
 }
-void check_count(counts *elements, map *data)
+void check_t_count(t_counts *elements, t_game *data)
 {
     if (elements->player != 1)
     {
@@ -46,12 +46,12 @@ void check_count(counts *elements, map *data)
     }
 }
 
-counts *check_arguments(map *data)
+t_counts *check_arguments(t_game *data)
 {
     int i, j;
-    counts *elements;
+    t_counts *elements;
 
-    elements = malloc(sizeof(counts));
+    elements = malloc(sizeof(t_counts));
     if (!elements)
         ft_error("Memory allocation failed\n", data);
     elements->player = 0;
@@ -81,14 +81,14 @@ counts *check_arguments(map *data)
     }
     return elements;
 }
-int check_map(map *data, int x, int y)
+int check_t_game(t_game *data, int x, int y)
 {
-    counts *elements;
+    t_counts *elements;
 
     check_walls(data);
     check_walls_2(data);
     elements = check_arguments(data);
-    check_count(elements, data);
+    check_t_count(elements, data);
 	find_player(data, &x, &y);
 	flood_fill(data, x, y);
     check_exit_collec(data, elements);
