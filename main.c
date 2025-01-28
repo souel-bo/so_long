@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/28 19:51:23 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:02:41 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,12 @@ int move(int keycode, void *ptr)
     return 0;
 }
 
-
+int close_win(t_game *game)
+{
+    mlx_destroy_window(game->mlx.connection, game->mlx.window); // Destroy the window
+    exit(0); // Exit the program
+    return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -162,6 +167,7 @@ int	main(int argc, char **argv)
 			draw_map(game);
 			//mlx_key_hook(game->mlx.window, move, game);
 			mlx_hook(game->mlx.window, 02, 1, move , game);
+			mlx_hook(game->mlx.window, 17, 0, close_win , game);
 			mlx_loop(game->mlx.connection);
 		}
 	}

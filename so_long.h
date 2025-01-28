@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:45:32 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/28 21:51:56 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:53:29 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include "libft.h"
 # include "get_next_line.h"
-#include "a/mlx.h"
+#include "minilibx-linux/mlx.h"
 
 #define ESC_KEY 65307
 #define UP_ROW 65362
