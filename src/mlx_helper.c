@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:13:34 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/29 10:29:21 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:59:08 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,12 @@ void	handle_movement(t_game *game, int new_x, int new_y)
 
 int	move(int keycode, void *ptr)
 {
-	t_game		*game;
-	static int	i = 0;
-	int			new_x;
-	int			new_y;
+	t_game	*game;
+	int		new_x;
+	int		new_y;
+	static int	ii = 0;
 
 	game = (t_game *)ptr;
-	ft_printf("moves==>%d\n", i++);
 	if (keycode == ESC_KEY)
 	{
 		cleanup_game(game);
@@ -91,14 +90,26 @@ int	move(int keycode, void *ptr)
 	}
 	new_x = game->pos.x;
 	new_y = game->pos.y;
-	if (keycode == LEFT_ROW)
+	if (keycode == LEFT_ROW || keycode == 'a' || keycode == 'A')
+	{	
+		ft_printf("moves==>%d\n", ii++);
 		new_x -= 1;
-	else if (keycode == RIGHT_ROW)
+	}
+	else if (keycode == RIGHT_ROW || keycode == 'd' || keycode == 'D')
+	{
+		ft_printf("moves==>%d\n", ii++);
 		new_x += 1;
-	else if (keycode == UP_ROW)
+	}
+	else if (keycode == UP_ROW || keycode == 'w' || keycode == 'W')
+	{
+		ft_printf("moves==>%d\n", ii++);
 		new_y -= 1;
-	else if (keycode == DOWN_ROW)
+	}
+	else if (keycode == DOWN_ROW || keycode == 's' || keycode == 'S')
+	{
+		ft_printf("moves==>%d\n", ii++);
 		new_y += 1;
+	}
 	handle_movement(game, new_x, new_y);
 	draw_map(game);
 	return (0);
