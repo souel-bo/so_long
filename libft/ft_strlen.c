@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 10:08:22 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/28 22:32:46 by souel-bo         ###   ########.fr       */
+/*   Created: 2024/10/23 10:59:25 by souel-bo          #+#    #+#             */
+/*   Updated: 2025/01/28 22:32:24 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-void	ft_putchar(char c, int *counter)
+size_t	ft_strlen(const char *s)
 {
-	write(1, &c, 1);
-	(*counter)++;
+	const char	*ptr;
+
+	if (!s)
+		return (0);
+	ptr = s;
+	while (*ptr != '\n' && *ptr != '\0')
+		ptr++;
+	return ((size_t)(ptr - s));
 }

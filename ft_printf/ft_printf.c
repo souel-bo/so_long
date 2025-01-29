@@ -6,11 +6,11 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 21:39:13 by souel-bo          #+#    #+#             */
-/*   Updated: 2024/11/26 10:50:22 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:32:38 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 static void	ft_put(const char *format, va_list list, int *counter)
 {

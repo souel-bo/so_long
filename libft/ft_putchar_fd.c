@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 10:08:22 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/28 22:32:46 by souel-bo         ###   ########.fr       */
+/*   Created: 2025/01/19 17:18:23 by souel-bo          #+#    #+#             */
+/*   Updated: 2025/01/28 22:44:07 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-void	ft_putchar(char c, int *counter)
+void	ft_putchar_fd(char c, int fd)
 {
-	write(1, &c, 1);
-	(*counter)++;
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
 }

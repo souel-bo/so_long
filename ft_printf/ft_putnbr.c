@@ -6,11 +6,11 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 10:08:29 by souel-bo          #+#    #+#             */
-/*   Updated: 2024/11/24 13:09:55 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:32:55 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void	ft_putnbr(int nb, int *counter)
 {
