@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/29 10:16:20 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/01/30 00:30:21 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	initialize(t_game *game)
 	char	*ptr;
 
 	ptr = "/home/souel-bo/Desktop/so_long/assets/background.xpm";
-	game->path.file_path = "/home/souel-bo/Desktop/so_long/assets/player1.xpm";
+	game->path.file_path= "/home/souel-bo/Desktop/so_long/assets/player1.xpm";
 	game->path.wall_path = "/home/souel-bo/Desktop/so_long/assets/wall.xpm";
 	game->path.coin_path = "/home/souel-bo/Desktop/so_long/assets/coin2.xpm";
 	game->path.exit_path = "/home/souel-bo/Desktop/so_long/assets/exit.xpm";
@@ -35,16 +35,28 @@ void	open_game(t_game *game)
 		game->mlx.connection = mlx_init();
 		game->mlx.window = mlx_new_window(game->mlx.connection, game->width
 				* 32, game->height * 32, "so_long");
+		if (!game->mlx.window)
+			exit(0);
 		game->image.wall = mlx_xpm_file_to_image(game->mlx.connection,
 				game->path.wall_path, &game->path.x, &game->path.y);
+		if (!game->image.wall)
+			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
 		game->image.img = mlx_xpm_file_to_image(game->mlx.connection,
 				game->path.file_path, &game->path.x, &game->path.y);
+		if (!game->image.img)
+			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
 		game->image.coin = mlx_xpm_file_to_image(game->mlx.connection,
 				game->path.coin_path, &game->path.x, &game->path.y);
+		if (!game->image.coin)
+			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
 		game->image.exit = mlx_xpm_file_to_image(game->mlx.connection,
 				game->path.exit_path, &game->path.x, &game->path.y);
+		if (!game->image.exit)
+			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
 		game->image.background = mlx_xpm_file_to_image(game->mlx.connection,
 				game->path.back_ground, &game->path.x, &game->path.y);
+		if (!game->image.background)
+			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
 		draw_map(game);
 		mlx_hook(game->mlx.window, 02, 1, move, game);
 		mlx_hook(game->mlx.window, 17, 0, close_win, game);
