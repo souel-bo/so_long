@@ -1,4 +1,4 @@
-CC = cc -fsanitize=address -g3
+CC = cc #-fsanitize=address -g3
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -6,7 +6,7 @@ NAME = so_long
 
 MLX = -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
-SRC = src/check_walls.c src/flod_fill.c src/helper.c src/main.c src/parcing_2.c src/parcing.c src/mlx_helper.c src/mlx_helper_2.c
+SRC = src/check_walls.c src/flod_fill.c src/helper.c src/main.c src/parcing_2.c src/parcing.c src/mlx_helper.c src/mlx_helper_2.c src/norm.c
 
 LIBFT = libft/ft_strlen.c libft/ft_strncmp.c libft/ft_putchar_fd.c libft/ft_putstr_fd.c 
 

@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:45:32 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/29 11:52:08 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/01 00:19:05 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,9 @@ int				draw_map(t_game *game);
 void			put_images(t_game *game, int i, int j);
 int				cleanup_game(t_game *game);
 void			check_exit_collec(t_game *data, t_counts *elements);
+void			cleanup_resources(t_game *game);
+int				init_window(t_game *game);
+int				load_images(t_game *game);
+void			start_game(t_game *game);
 
 #endif

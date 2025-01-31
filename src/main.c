@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/30 00:30:21 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/01 00:17:27 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,50 +17,61 @@ void	initialize(t_game *game)
 	char	*ptr;
 
 	ptr = "/home/souel-bo/Desktop/so_long/assets/background.xpm";
-	game->path.file_path= "/home/souel-bo/Desktop/so_long/assets/player1.xpm";
+	game->path.file_path = "/home/souel-bo/Desktop/so_long/assets/player1.xpm";
 	game->path.wall_path = "/home/souel-bo/Desktop/so_long/assets/wall.xpm";
 	game->path.coin_path = "/home/souel-bo/Desktop/so_long/assets/coin2.xpm";
 	game->path.exit_path = "/home/souel-bo/Desktop/so_long/assets/exit.xpm";
 	game->path.back_ground = ptr;
 }
 
+int	check_assets_paths(t_game *game)
+{
+	int	fd;
+
+	fd = open(game->path.wall_path, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	fd = open(game->path.file_path, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	fd = open(game->path.coin_path, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	fd = open(game->path.exit_path, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	fd = open(game->path.back_ground, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	return (1);
+}
+
 void	open_game(t_game *game)
 {
 	initialize(game);
+	if (!check_assets_paths(game))
+	{
+		free_split(game->lines);
+		free(game);
+		ft_printf("Error\nInvalid assets path\n");
+		exit(0);
+	}
 	if (check_t_game(game, 0, 0) == 1)
 	{
 		find_player(game, &game->pos.x, &game->pos.y);
-		game->path.x = game->width * 32;
-		game->path.y = game->height * 32;
-		game->mlx.connection = mlx_init();
-		game->mlx.window = mlx_new_window(game->mlx.connection, game->width
-				* 32, game->height * 32, "so_long");
-		if (!game->mlx.window)
-			exit(0);
-		game->image.wall = mlx_xpm_file_to_image(game->mlx.connection,
-				game->path.wall_path, &game->path.x, &game->path.y);
-		if (!game->image.wall)
-			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
-		game->image.img = mlx_xpm_file_to_image(game->mlx.connection,
-				game->path.file_path, &game->path.x, &game->path.y);
-		if (!game->image.img)
-			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
-		game->image.coin = mlx_xpm_file_to_image(game->mlx.connection,
-				game->path.coin_path, &game->path.x, &game->path.y);
-		if (!game->image.coin)
-			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
-		game->image.exit = mlx_xpm_file_to_image(game->mlx.connection,
-				game->path.exit_path, &game->path.x, &game->path.y);
-		if (!game->image.exit)
-			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
-		game->image.background = mlx_xpm_file_to_image(game->mlx.connection,
-				game->path.back_ground, &game->path.x, &game->path.y);
-		if (!game->image.background)
-			return mlx_destroy_window(game->mlx.connection, game->mlx.window), exit(0);
-		draw_map(game);
-		mlx_hook(game->mlx.window, 02, 1, move, game);
-		mlx_hook(game->mlx.window, 17, 0, close_win, game);
-		mlx_loop(game->mlx.connection);
+		if (!init_window(game))
+			return ;
+		if (!load_images(game))
+		{
+			cleanup_resources(game);
+			return ;
+		}
+		start_game(game);
 	}
 }
 

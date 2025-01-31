@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:13:34 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/29 11:59:08 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/01 00:44:17 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,40 @@ void	handle_movement(t_game *game, int new_x, int new_y)
 	}
 }
 
+void	aplly_key(int keycode, int *ii, int *new_x, int *new_y)
+{
+	static int	i;
+
+	i = *ii;
+	if (keycode == LEFT_ROW || keycode == 'a' || keycode == 'A')
+	{
+		ft_printf("moves==>%d\n", i++);
+		*new_x -= 1;
+	}
+	else if (keycode == RIGHT_ROW || keycode == 'd' || keycode == 'D')
+	{
+		ft_printf("moves==>%d\n", i++);
+		*new_x += 1;
+	}
+	else if (keycode == UP_ROW || keycode == 'w' || keycode == 'W')
+	{
+		ft_printf("moves==>%d\n", i++);
+		*new_y -= 1;
+	}
+	else if (keycode == DOWN_ROW || keycode == 's' || keycode == 'S')
+	{
+		ft_printf("moves==>%d\n", i++);
+		*new_y += 1;
+	}
+	*ii = i;
+}
+
 int	move(int keycode, void *ptr)
 {
-	t_game	*game;
-	int		new_x;
-	int		new_y;
-	static int	ii = 0;
+	t_game		*game;
+	int			new_x;
+	int			new_y;
+	static int	ii = 1;
 
 	game = (t_game *)ptr;
 	if (keycode == ESC_KEY)
@@ -90,34 +118,8 @@ int	move(int keycode, void *ptr)
 	}
 	new_x = game->pos.x;
 	new_y = game->pos.y;
-	if (keycode == LEFT_ROW || keycode == 'a' || keycode == 'A')
-	{	
-		ft_printf("moves==>%d\n", ii++);
-		new_x -= 1;
-	}
-	else if (keycode == RIGHT_ROW || keycode == 'd' || keycode == 'D')
-	{
-		ft_printf("moves==>%d\n", ii++);
-		new_x += 1;
-	}
-	else if (keycode == UP_ROW || keycode == 'w' || keycode == 'W')
-	{
-		ft_printf("moves==>%d\n", ii++);
-		new_y -= 1;
-	}
-	else if (keycode == DOWN_ROW || keycode == 's' || keycode == 'S')
-	{
-		ft_printf("moves==>%d\n", ii++);
-		new_y += 1;
-	}
+	aplly_key(keycode, &ii, &new_x, &new_y);
 	handle_movement(game, new_x, new_y);
 	draw_map(game);
-	return (0);
-}
-
-int	close_win(t_game *game)
-{
-	cleanup_game(game);
-	exit(0);
 	return (0);
 }
