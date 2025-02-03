@@ -33,7 +33,7 @@ void	cleanup_resources(t_game *game)
 	}
 }
 
-int	init_window(t_game *game)                                                 
+int	init_window(t_game *game)
 {
 	game->path.x = game->width * 32;
 	game->path.y = game->height * 32;
