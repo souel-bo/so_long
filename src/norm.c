@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 00:17:03 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/01 00:44:27 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/02 02:11:41 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	cleanup_resources(t_game *game)
 	}
 }
 
-int	init_window(t_game *game)
+int	init_window(t_game *game)                                                 
 {
 	game->path.x = game->width * 32;
 	game->path.y = game->height * 32;

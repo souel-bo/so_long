@@ -4,8 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = so_long
 
-MLX = -Lminilibx-linux -lmlx -lXext -lX11 -lm
-
+MLX = -Lminilibx-linux -lmlx -Lmlx -lXext -lX11
 SRC = src/check_walls.c src/flod_fill.c src/helper.c src/main.c src/parcing_2.c src/parcing.c src/mlx_helper.c src/mlx_helper_2.c src/norm.c
 
 LIBFT = libft/ft_strlen.c libft/ft_strncmp.c libft/ft_putchar_fd.c libft/ft_putstr_fd.c 
@@ -25,17 +24,19 @@ OBJ_GET = $(GET:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF)
-	@$(CC) $(CFLAGS) $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) -o $(NAME) $(MLX)
+	$(CC) $(CFLAGS) $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) -o $(NAME) $(MLX)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF)
+	rm -f $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+.SECONDARY: $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF)

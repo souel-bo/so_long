@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/01 00:17:27 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/03 08:34:17 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	initialize(t_game *game)
 {
 	char	*ptr;
 
-	ptr = "/home/souel-bo/Desktop/so_long/assets/background.xpm";
-	game->path.file_path = "/home/souel-bo/Desktop/so_long/assets/player1.xpm";
-	game->path.wall_path = "/home/souel-bo/Desktop/so_long/assets/wall.xpm";
-	game->path.coin_path = "/home/souel-bo/Desktop/so_long/assets/coin2.xpm";
-	game->path.exit_path = "/home/souel-bo/Desktop/so_long/assets/exit.xpm";
+	ptr = "./assets/background.xpm";
+	game->path.file_path = "./assets/player1.xpm";
+	game->path.wall_path = "./assets/wall.xpm";
+	game->path.coin_path = "./assets/coin2.xpm";
+	game->path.exit_path = "./assets/exit.xpm";
 	game->path.back_ground = ptr;
 }
 
