@@ -82,7 +82,7 @@ int	main(int argc, char **argv)
 	char	*msg;
 
 	fd = 0;
-	msg = "invalid arguments : args should be ./so_long (map path)\n";
+	msg = "invalid arguments : args should be ./so_long_bonus (map path)\n";
 	if (argc != 2)
 	{
 		ft_putstr_fd(msg, 2);
