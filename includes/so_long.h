@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../minilibx-linux/mlx.h"
+# include "../minilibx/mlx.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
@@ -100,7 +100,7 @@ void			find_player(t_game *data, int *x, int *y);
 void			initialize(t_game *game);
 int				close_win(t_game *game);
 int				move(int keycode, void *ptr);
-void			handle_movement(t_game *game, int new_x, int new_y);
+void			handle_movement(t_game *game, int *ii,int new_x, int new_y);
 int				draw_map(t_game *game);
 void			put_images(t_game *game, int i, int j);
 int				cleanup_game(t_game *game);
