@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:13:34 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/01 00:44:17 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:10:09 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	put_images(t_game *game, int i, int j)
 {
 	if (game->lines[i][j] == '1')
 		mlx_put_image_to_window(game->mlx.connection, game->mlx.window,
-			game->image.wall, j * 32, i * 32);
+			game->image.wall, j * 64, i * 64);
 	else if (game->lines[i][j] == 'B' && !(i == game->pos.y
 			&& j == game->pos.x))
 		mlx_put_image_to_window(game->mlx.connection, game->mlx.window,
-			game->image.exit, j * 32, i * 32);
+			game->image.exit, j * 64, i * 64);
 	else if (game->lines[i][j] == 'P')
 		mlx_put_image_to_window(game->mlx.connection, game->mlx.window,
-			game->image.img, game->pos.x * 32, game->pos.y * 32);
+			game->image.img, game->pos.x * 64, game->pos.y * 64);
 	else if (game->lines[i][j] == 'V')
 	{
 		game->counts.collectives++;
 		mlx_put_image_to_window(game->mlx.connection, game->mlx.window,
-			game->image.coin, j * 32, i * 32);
+			game->image.coin, j * 64, i * 64);
 	}
 }
 
@@ -54,7 +54,9 @@ int	draw_map(t_game *game)
 
 void	handle_movement(t_game *game, int *ii, int new_x, int new_y)
 {
-  int i = *ii;
+	int	i;
+
+	i = *ii;
 	if (game->lines[new_y][new_x] != '1')
 	{
 		if (game->lines[new_y][new_x] == 'V')
@@ -63,10 +65,10 @@ void	handle_movement(t_game *game, int *ii, int new_x, int new_y)
 			game->lines[new_y][new_x] = 'x';
 		}
 		mlx_put_image_to_window(game->mlx.connection, game->mlx.window,
-			game->image.background, (game->pos.x) * 32, (game->pos.y) * 32);
+			game->image.background, (game->pos.x) * 64, (game->pos.y) * 64);
 		game->pos.x = new_x;
 		game->pos.y = new_y;
-    ft_printf("moves : %d\n", i++);
+		ft_printf("moves : %d\n", i++);
 	}
 	if (game->counts.collectives == 0 && game->lines[new_y][new_x] == 'B')
 	{
@@ -75,7 +77,7 @@ void	handle_movement(t_game *game, int *ii, int new_x, int new_y)
 		cleanup_game(game);
 		exit(0);
 	}
-  *ii = i;
+	*ii = i;
 }
 
 void	aplly_key(int keycode, int *new_x, int *new_y)
@@ -106,7 +108,7 @@ int	move(int keycode, void *ptr)
 	new_x = game->pos.x;
 	new_y = game->pos.y;
 	aplly_key(keycode, &new_x, &new_y);
-	handle_movement(game, &ii,new_x, new_y);
+	handle_movement(game, &ii, new_x, new_y);
 	draw_map(game);
 	return (0);
 }

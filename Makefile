@@ -4,8 +4,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = so_long
 
-MLX = -L./minilibx -lmlx -lXext -lX11
-SRC = src/check_walls.c src/flod_fill.c src/helper.c src/main.c src/parcing_2.c src/parcing.c src/mlx_helper.c src/mlx_helper_2.c src/norm.c
+MLX = -lmlx -lXext -lX11
+
+SRC = src/check_walls.c src/flod_fill.c src/helper.c src/main.c src/parcing_2.c src/parcing.c src/mlx_helper.c src/mlx_helper_2.c src/norm.c 
 
 LIBFT = libft/ft_strlen.c libft/ft_strncmp.c libft/ft_putchar_fd.c libft/ft_putstr_fd.c 
 
@@ -23,7 +24,7 @@ OBJ_GET = $(GET:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF)
+$(NAME): $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) includes/so_long.h
 	$(CC) $(CFLAGS) $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) -o $(NAME) $(MLX)
 
 %.o: %.c
@@ -33,7 +34,7 @@ clean:
 	rm -f $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:15:33 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/29 22:39:04 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:07:18 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_exit_collec(t_game *data, t_counts *elements)
 			{
 				free(elements);
 				free_split(data->lines);
-				ft_error("map not valid : flodd_fill failed\n", data);
+				ft_error("Erorr\nmap not valid : flodd_fill failed\n", data);
 			}
 			j++;
 		}

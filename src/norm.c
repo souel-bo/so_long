@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 00:17:03 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/02 02:11:41 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:53:12 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	cleanup_resources(t_game *game)
 
 int	init_window(t_game *game)
 {
-	game->path.x = game->width * 32;
-	game->path.y = game->height * 32;
+	game->path.x = game->width * 64;
+	game->path.y = game->height * 64;
 	game->mlx.connection = mlx_init();
 	if (!game->mlx.connection)
 		return (0);
-	game->mlx.window = mlx_new_window(game->mlx.connection, game->width * 32,
-			game->height * 32, "so_long");
+	game->mlx.window = mlx_new_window(game->mlx.connection, game->width * 64,
+			game->height * 64, "so_long_bonus");
 	if (!game->mlx.window)
 	{
 		cleanup_resources(game);

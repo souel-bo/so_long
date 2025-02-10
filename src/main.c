@@ -6,21 +6,28 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/03 08:34:17 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:01:56 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+static void	err(char *msg, char *msg2)
+{
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd(msg2, 2);
+	exit(1);
+}
+
 void	initialize(t_game *game)
 {
 	char	*ptr;
 
-	ptr = "./assets/background.xpm";
-	game->path.file_path = "./assets/player1.xpm";
-	game->path.wall_path = "./assets/wall.xpm";
-	game->path.coin_path = "./assets/coin2.xpm";
-	game->path.exit_path = "./assets/exit.xpm";
+	ptr = "./bonus_assets/background/background.xpm";
+	game->path.file_path = "./bonus_assets/player/player1.xpm";
+	game->path.wall_path = "./bonus_assets/wall/wall.xpm";
+	game->path.coin_path = "./bonus_assets/collectives/red_crystal_1.xpm";
+	game->path.exit_path = "./bonus_assets/exit/exit.xpm";
 	game->path.back_ground = ptr;
 }
 
@@ -80,19 +87,18 @@ int	main(int argc, char **argv)
 	int		fd;
 	t_game	*game;
 	char	*msg;
+	char	*msg2;
 
 	fd = 0;
-	msg = "invalid arguments : args should be ./so_long_bonus (map path)\n";
+	msg = "Error\n";
+	msg2 = "invalid arguments : args should be ./so_long_bonus (map path)\n";
 	if (argc != 2)
-	{
-		ft_putstr_fd(msg, 2);
-		exit(1);
-	}
+		err(msg, msg2);
 	if (check_file_name(argv[1]) == 1)
 		fd = open_file(argv[1]);
 	else
 	{
-		ft_putstr_fd("map name should end up with (.ber)\n", 2);
+		ft_putstr_fd("Error\nmap name should end up with (.ber)\n", 2);
 		exit(1);
 	}
 	if (read_file(fd) == 1)

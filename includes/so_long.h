@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/19 15:45:32 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/01 00:19:05 by souel-bo         ###   ########.fr       */
+/*   Created: 2025/02/09 14:06:37 by souel-bo          #+#    #+#             */
+/*   Updated: 2025/02/10 13:06:59 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../minilibx/mlx.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
 # include <fcntl.h>
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -100,7 +100,7 @@ void			find_player(t_game *data, int *x, int *y);
 void			initialize(t_game *game);
 int				close_win(t_game *game);
 int				move(int keycode, void *ptr);
-void			handle_movement(t_game *game, int *ii,int new_x, int new_y);
+void			handle_movement(t_game *game, int *ii, int new_x, int new_y);
 int				draw_map(t_game *game);
 void			put_images(t_game *game, int i, int j);
 int				cleanup_game(t_game *game);

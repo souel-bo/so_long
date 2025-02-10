@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:14 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/01/29 10:40:53 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:53:19 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	helper(char *first_line, char *second_line)
 	free(first_line);
 	get_next_line(-1);
 	free(second_line);
-	ft_putstr_fd("t_game should be rectangle\n", 2);
+	ft_putstr_fd("map should be rectangle\n", 2);
 	exit(1);
 }
 
