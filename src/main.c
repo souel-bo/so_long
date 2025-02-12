@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:56:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/10 13:01:56 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/12 20:58:04 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	open_game(t_game *game)
 		free_split(game->lines);
 		free(game);
 		ft_printf("Error\nInvalid assets path\n");
-		exit(0);
+		exit(1);
 	}
 	if (check_t_game(game, 0, 0) == 1)
 	{
@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 
 	fd = 0;
 	msg = "Error\n";
-	msg2 = "invalid arguments : args should be ./so_long_bonus (map path)\n";
+	msg2 = "invalid arguments : args should be ./so_long (map path)\n";
 	if (argc != 2)
 		err(msg, msg2);
 	if (check_file_name(argv[1]) == 1)

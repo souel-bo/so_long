@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   helper_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 16:37:44 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/12 20:52:07 by souel-bo         ###   ########.fr       */
+/*   Created: 2025/02/12 21:46:43 by souel-bo          #+#    #+#             */
+/*   Updated: 2025/02/12 22:44:26 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	free_split(char **split)
 {
@@ -50,7 +50,7 @@ void	check_t_count(t_counts *elements, t_game *data)
 
 static void	count_elements(t_counts *elements, char c, t_game *data)
 {
-	if (!(c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P'))
+	if (!(c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P' || c == 'N'))
 	{
 		free_split(data->lines);
 		free(elements);

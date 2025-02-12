@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing.c                                          :+:      :+:    :+:   */
+/*   parcing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/19 14:56:14 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/10 13:37:37 by souel-bo         ###   ########.fr       */
+/*   Created: 2025/02/12 22:45:01 by souel-bo          #+#    #+#             */
+/*   Updated: 2025/02/12 22:45:07 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 int	check_file_name(const char *file_name)
 {

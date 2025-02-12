@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/09 14:06:37 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/12 21:04:08 by souel-bo         ###   ########.fr       */
+/*   Created: 2025/02/12 21:04:34 by souel-bo          #+#    #+#             */
+/*   Updated: 2025/02/12 23:18:59 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@
 
 typedef struct s_image
 {
-	void		*img;
+	void		*img[8];
 	void		*wall;
-	void		*coin;
+	void		*coin[4];
+	void		*enemy[6];
 	void		*exit;
 	void		*background;
 }				t_image;
@@ -62,11 +63,12 @@ typedef struct s_path
 {
 	char		*file_path;
 	char		*wall_path;
-	char		*coin_path;
 	char		*exit_path;
 	char		*back_ground;
 	int			x;
 	int			y;
+	int			coin_x;
+	int			coin_y;
 }				t_paths;
 
 typedef struct s_file
@@ -74,7 +76,15 @@ typedef struct s_file
 	int			width;
 	int			height;
 	char		**lines;
+	char 		*coins[4];
+	char		*player[8];
+	char		*enemy[6];
 	char		*s;
+	int			frame;
+	int			player_frame;
+	int			enemy_frame;
+	int			exit_x;
+	int 		exit_y;
 	t_mlx		mlx;
 	t_image		image;
 	t_position	pos;
@@ -109,5 +119,6 @@ void			cleanup_resources(t_game *game);
 int				init_window(t_game *game);
 int				load_images(t_game *game);
 void			start_game(t_game *game);
-
+int             get_file_lenght(char *line, int fd);
+void function(t_game *game);
 #endif
