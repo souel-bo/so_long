@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:45:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/13 06:21:20 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:14:47 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,8 +289,6 @@ void	aplly_key(int keycode, int *new_x, int *new_y, t_game *game)
 	else if (keycode == DOWN_ROW || keycode == 's' || keycode == 'S')
 		*new_y += 1;
 }
-
-
 
 int	move(int keycode, void *ptr)
 {

@@ -1,6 +1,6 @@
 CC = cc #-fsanitize=address -g3
 
-CFLAGS = 
+CFLAGS = -Wall -Wextra -Werror
 
 BONUS_SRC = bonus_src/check_walls_bonus.c  bonus_src/helper_bonus.c  bonus_src/mlx_helper_bonus.c  bonus_src/parcing_bonus.c\
 			bonus_src/flood_fill_bonus.c   bonus_src/main_bonus.c    bonus_src/parcing_2_bonus.c   bonus_src/so_long_bonus.c		
@@ -33,8 +33,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) includes/so_long.h
 	$(CC) $(CFLAGS) $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) -o $(NAME) $(MLX)
+bonus : $(BONUS_NAME)
 
-bonus: $(BONUS_OBJ) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) includes/so_long.h
+$(BONUS_NAME): $(BONUS_OBJ) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) includes/so_long.h
 	$(CC) $(CFLAGS) $(BONUS_OBJ) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) -o $(BONUS_NAME) $(MLX)
 
 %.o: %.c
