@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:45:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/12 22:44:57 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 02:53:07 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_game	*fill_t_game(int fd, const char *file_name)
 	if (!data)
 		return (NULL);
 	data->height = get_height(fd, data);
+	close(fd);
 	fd = open_file(file_name);
 	data->lines = malloc(sizeof(char *) * (data->height + 1));
 	if (!data->lines)

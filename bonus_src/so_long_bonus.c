@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:45:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/12 23:29:22 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 06:21:20 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,16 @@ void get_hight(t_game *game)
     game->height = j;
     game->width = i;
 }
+
+void check_asset_path(const char *path)
+{
+    int fd = open(path, O_RDONLY);
+    if (fd == -1) {
+        ft_putstr_fd("Error\nAsset file not found or not readable", 2);
+        exit(EXIT_FAILURE);
+    }
+    close(fd);
+}
 void get_path(t_game *game)
 {
     game->coins[0] = "./bonus_assets/collectives/red_crystal_1.xpm";
@@ -82,7 +92,7 @@ void get_path(t_game *game)
     game->path.wall_path = "./bonus_assets/wall/wall.xpm";
     game->path.back_ground = "./bonus_assets/collectives/background.xpm";
     game->path.exit_path = "./bonus_assets/exit/exit.xpm";
-    
+
     game->player[0] = "./bonus_assets/player/walk.xpm";
     game->player[1] = "./bonus_assets/player/walk_1.xpm";
     game->player[2] = "./bonus_assets/player/walk_2.xpm";
@@ -99,8 +109,20 @@ void get_path(t_game *game)
     game->enemy[4] = "./bonus_assets/enemy/enemy_4.xpm";
     game->enemy[5] = "./bonus_assets/enemy/enemy_5.xpm";
 
+    for (int i = 0; i < 4; i++)
+        check_asset_path(game->coins[i]);
 
+    check_asset_path(game->path.wall_path);
+    check_asset_path(game->path.back_ground);
+    check_asset_path(game->path.exit_path);
+
+    for (int i = 0; i < 8; i++)
+        check_asset_path(game->player[i]);
+
+    for (int i = 0; i < 6; i++)
+        check_asset_path(game->enemy[i]);
 }
+
 
 void get_xpm(t_game *game)
 {
@@ -211,6 +233,7 @@ void display_moves(t_game *game, int i)
     free(moves);
     free(str);
 }
+
 void	handle_movement(t_game *game, int *ii, int new_x, int new_y)
 {
 	int	i;
@@ -234,6 +257,7 @@ void	handle_movement(t_game *game, int *ii, int new_x, int new_y)
         if (game->lines[new_y][new_x] == 'N')
         {
             printf("Game Over\n");
+            clean_game(game);
             exit(1);
         }
         else
@@ -242,17 +266,21 @@ void	handle_movement(t_game *game, int *ii, int new_x, int new_y)
             mlx_put_image_to_window(game->mlx.connection, game->mlx.window,
                     game->image.exit, game->exit_y * 64, game->exit_x * 64);
         }
+        clean_game(game);
         exit(0);
     }
     *ii = i;
 }
 
 
-void	aplly_key(int keycode, int *new_x, int *new_y)
+void	aplly_key(int keycode, int *new_x, int *new_y, t_game *game)
 {
     if (keycode == ESC_KEY)
+    {
+        clean_game(game);
         exit(0);
-	else if (keycode == LEFT_ROW || keycode == 'a' || keycode == 'A')
+    }
+    else if (keycode == LEFT_ROW || keycode == 'a' || keycode == 'A')
 		*new_x -= 1;
     else if (keycode == RIGHT_ROW || keycode == 'd' || keycode == 'D')
 		*new_x += 1;
@@ -274,7 +302,7 @@ int	move(int keycode, void *ptr)
 	game = (t_game *)ptr;
 	new_x = game->pos.x;
 	new_y = game->pos.y;
-	aplly_key(keycode, &new_x, &new_y);
+	aplly_key(keycode, &new_x, &new_y, game);
 	handle_movement(game, &ii, new_x, new_y);
 	display_image(game);
 	return (0);
@@ -342,13 +370,60 @@ int animate(t_game *game)
     return (0);
 }
 
+void free_textures(t_game *game)
+{
+    int i = 0;
+    while (game->image.coin[i] && i < 4)
+    {
+        if (game->image.coin[i])
+            mlx_destroy_image(game->mlx.connection, game->image.coin[i]);
+        i++;
+    }
+    i = 0;
+    while (game->image.img[i] && i < 8)
+    {
+        if (game->image.img[i])
+            mlx_destroy_image(game->mlx.connection, game->image.img[i]);
+        i++;
+    }
+    i = 0;
+    while (game->image.enemy[i] && i < 6)
+    {
+        if (game->image.enemy[i])
+            mlx_destroy_image(game->mlx.connection, game->image.enemy[i]);
+        i++;
+    }
+}
+
+int	clean_game(t_game *game)
+{
+	mlx_destroy_image(game->mlx.connection, game->image.wall);
+	// mlx_destroy_image(game->mlx.connection, game->image.coin);
+	// mlx_destroy_image(game->mlx.connection, game->image.img);
+    free_textures(game);
+	mlx_destroy_image(game->mlx.connection, game->image.exit);
+	mlx_destroy_image(game->mlx.connection, game->image.background);
+	mlx_destroy_window(game->mlx.connection, game->mlx.window);
+	mlx_destroy_display(game->mlx.connection);
+	free(game->mlx.connection);
+	free_split(game->lines);
+	free(game);
+	return (0);
+}
+int	ft_close(t_game *game)
+{
+    clean_game(game);
+	exit(0);
+	return (0);
+}
+
 void ft_start_game(t_game *game)
 {
     game->mlx.connection = mlx_init();
     get_hight(game);
-    game->mlx.window = mlx_new_window(game->mlx.connection, game->height * 64,
-			game->width * 75, "so_long_bonus");
     get_path(game);
+    game->mlx.window = mlx_new_window(game->mlx.connection, game->height * 64,
+			game->width * 70, "so_long_bonus");
     get_xpm(game);
     game->frame = 0;
     game->player_frame = 0;
@@ -356,14 +431,16 @@ void ft_start_game(t_game *game)
     display_image(game);
     mlx_loop_hook(game->mlx.connection, animate, game);
     mlx_hook(game->mlx.window, 02, 1, move, game);
+    mlx_hook(game->mlx.window, 17, 0, ft_close, game);
     mlx_loop(game->mlx.connection);
 }
 
 
 void function(t_game *game)
 {
+    game->pos.x = 0;
+    game->pos.y = 0;
     find_player(game, &game->pos.x, &game->pos.y);
-    printf("%d\n%d\n", game->pos.x, game->pos.y);
     find_exit(game);
     ft_start_game(game);
 }

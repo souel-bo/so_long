@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:04:34 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/12 23:18:59 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 06:19:02 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,7 @@ int				load_images(t_game *game);
 void			start_game(t_game *game);
 int             get_file_lenght(char *line, int fd);
 void function(t_game *game);
+void initialize_game(t_game *game);
+char **read_files(t_game *game, int fd, char *argv, int lenght);
+int	clean_game(t_game *game);
 #endif

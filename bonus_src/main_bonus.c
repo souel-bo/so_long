@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:53:01 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/12 23:18:53 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 04:32:34 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ int	main(int argc, char **argv)
 	if (read_file(fd) == 1)
 	{
 		game = fill_t_game(fd, argv[1]);
-        // int i = get_file_lenght(game->s, fd);
+		 game->counts.collectives = 0;
 		if (check_t_game(game, 0, 0) == 1)
-        {
             function(game);
-        }
 	}
 }

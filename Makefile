@@ -1,9 +1,9 @@
 CC = cc #-fsanitize=address -g3
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = 
 
 BONUS_SRC = bonus_src/check_walls_bonus.c  bonus_src/helper_bonus.c  bonus_src/mlx_helper_bonus.c  bonus_src/parcing_bonus.c\
-			bonus_src/flood_fill_bonus.c   bonus_src/main_bonus.c    bonus_src/parcing_2_bonus.c   bonus_src/so_long_bonus.c
+			bonus_src/flood_fill_bonus.c   bonus_src/main_bonus.c    bonus_src/parcing_2_bonus.c   bonus_src/so_long_bonus.c		
 
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
@@ -51,4 +51,4 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
-.SECONDARY: $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF)
+.SECONDARY: $(OBJ_SO_LONG) $(OBJ_GET) $(OBJ_LIBFT) $(OBJ_PRINTF) $(BONUS_OBJ)
