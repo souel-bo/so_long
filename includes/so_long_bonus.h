@@ -6,12 +6,12 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:04:34 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/13 06:19:02 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:28:01 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "ft_printf.h"
 # include "get_next_line.h"
@@ -76,7 +76,7 @@ typedef struct s_file
 	int			width;
 	int			height;
 	char		**lines;
-	char 		*coins[4];
+	char		*coins[4];
 	char		*player[8];
 	char		*enemy[6];
 	char		*s;
@@ -84,7 +84,7 @@ typedef struct s_file
 	int			player_frame;
 	int			enemy_frame;
 	int			exit_x;
-	int 		exit_y;
+	int			exit_y;
 	t_mlx		mlx;
 	t_image		image;
 	t_position	pos;
@@ -119,9 +119,31 @@ void			cleanup_resources(t_game *game);
 int				init_window(t_game *game);
 int				load_images(t_game *game);
 void			start_game(t_game *game);
-int             get_file_lenght(char *line, int fd);
-void function(t_game *game);
-void initialize_game(t_game *game);
-char **read_files(t_game *game, int fd, char *argv, int lenght);
-int	clean_game(t_game *game);
+int				get_file_lenght(char *line, int fd);
+void			function(t_game *game);
+void			initialize_game(t_game *game);
+char			**read_files(t_game *game, int fd, char *argv, int lenght);
+int				clean_game(t_game *game);
+int				ft_close(t_game *game);
+void			free_textures(t_game *game);
+void			ft_start_game(t_game *game);
+void			free_arr(char **arr);
+void			get_hight(t_game *game);
+void			check_asset_path(const char *path, t_game *game);
+void			get_path(t_game *game);
+void			get_xpm(t_game *game);
+void			display_image(t_game *game);
+void			find_exit(t_game *game);
+void			cover_bg(t_game *game);
+int				animate_coins(t_game *game);
+int				animate_player(t_game *game);
+int				animate_enemy(t_game *game);
+int				animate(t_game *game);
+void			aplly_key(int keycode, int *new_x, int *new_y, t_game *game);
+void			display_moves(t_game *game, int i);
+void			init_coin_paths(t_game *game);
+void			init_player_paths(t_game *game);
+void			init_enemy_paths(t_game *game);
+void			init_basic_paths(t_game *game);
+
 #endif

@@ -45,7 +45,7 @@ void	flood_fill(t_game *data, int x, int y)
 		return ;
 	if (data->lines[y][x] == '1')
 		return ;
-    if (data->lines[y][x] == 'N')
+	if (data->lines[y][x] == 'N')
 		return ;
 	else if (data->lines[y][x] == 'C')
 		data->lines[y][x] = 'c';
