@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 14:06:37 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/13 13:34:40 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:02:14 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@
 # include <unistd.h>
 
 # define ESC_KEY 65307
-# define UP_ROW 65362
-# define DOWN_ROW 65364
-# define RIGHT_ROW 65363
-# define LEFT_ROW 65361
 
 typedef struct s_image
 {
@@ -75,6 +71,7 @@ typedef struct s_file
 	int			height;
 	char		**lines;
 	char		*s;
+	int			keycode;
 	t_mlx		mlx;
 	t_image		image;
 	t_position	pos;
@@ -109,5 +106,6 @@ void			cleanup_resources(t_game *game);
 int				init_window(t_game *game);
 int				load_images(t_game *game);
 void			start_game(t_game *game);
+void			aplly_key(int keycode, int *new_x, int *new_y);
 
 #endif

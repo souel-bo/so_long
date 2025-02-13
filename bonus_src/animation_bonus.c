@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:34:13 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/13 15:53:27 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:30:10 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	move(int keycode, void *ptr)
 	static int	ii = 1;
 
 	game = (t_game *)ptr;
+	game->keycode = keycode;
 	new_x = game->pos.x;
 	new_y = game->pos.y;
-	aplly_key(keycode, &new_x, &new_y, game);
+	aplly_key(&new_x, &new_y, game);
 	handle_movement(game, &ii, new_x, new_y);
 	display_image(game);
 	return (0);

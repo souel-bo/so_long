@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:43:38 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/10 12:52:50 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:01:32 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,16 @@ void	flood_fill(t_game *data, int x, int y)
 	flood_fill(data, x - 1, y);
 	flood_fill(data, x, y + 1);
 	flood_fill(data, x, y - 1);
+}
+
+void	aplly_key(int keycode, int *new_x, int *new_y)
+{
+	if (keycode == 'a')
+		*new_x -= 1;
+	else if (keycode == 'd')
+		*new_x += 1;
+	else if (keycode == 'w')
+		*new_y -= 1;
+	else if (keycode == 's')
+		*new_y += 1;
 }

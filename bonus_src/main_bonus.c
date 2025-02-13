@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:53:01 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/13 15:34:55 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:24:54 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	handle_movement(t_game *game, int *ii, int new_x, int new_y)
 	int	i;
 
 	i = *ii;
-	if (game->lines[new_y][new_x] != '1')
+	if (game->lines[new_y][new_x] != '1' && (game->keycode == 'a'
+			|| game->keycode == 's' || game->keycode == 'd'
+			|| game->keycode == 'w'))
 	{
 		if (game->lines[new_y][new_x] == 'c')
 		{

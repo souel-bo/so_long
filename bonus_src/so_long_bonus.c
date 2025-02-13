@@ -6,7 +6,7 @@
 /*   By: souel-bo <souel-bo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:45:11 by souel-bo          #+#    #+#             */
-/*   Updated: 2025/02/13 16:24:05 by souel-bo         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:26:33 by souel-bo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,19 @@ void	display_image(t_game *game)
 	}
 }
 
-void	aplly_key(int keycode, int *new_x, int *new_y, t_game *game)
+void	aplly_key(int *new_x, int *new_y, t_game *game)
 {
-	if (keycode == ESC_KEY)
+	if (game->keycode == ESC_KEY)
 	{
 		clean_game(game);
 		exit(0);
 	}
-	else if (keycode == LEFT_ROW || keycode == 'a' || keycode == 'A')
+	else if (game->keycode == 'a')
 		*new_x -= 1;
-	else if (keycode == RIGHT_ROW || keycode == 'd' || keycode == 'D')
+	else if (game->keycode == 'd')
 		*new_x += 1;
-	else if (keycode == UP_ROW || keycode == 'w' || keycode == 'W')
+	else if (game->keycode == 'w')
 		*new_y -= 1;
-	else if (keycode == DOWN_ROW || keycode == 's' || keycode == 'S')
+	else if (game->keycode == 's')
 		*new_y += 1;
 }
